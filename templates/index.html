@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diabetes Prediction</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-slate-700 text-white">
+    <div class="container mx-auto p-4">
+        <h1 class="text-4xl font-bold mb-4 text-center text-black">Diabetes Prediction</h1>
+        <form method="post" class="bg-gray-800 p-6 rounded-lg shadow-lg">
+            <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+                <div>
+                    <label class="block font-bold mb-1">Pregnancies:</label>
+                    <input type="number" name="Pregnancies" required class="w-full p-2 border rounded bg-gray-700 text-white">
+                </div>
+                <div>
+                    <label class="block font-bold mb-1">Glucose:</label>
+                    <input type="number" name="Glucose" required class="w-full p-2 border rounded bg-gray-700 text-white">
+                </div>
+                <div>
+                    <label class="block font-bold mb-1">Blood Pressure:</label>
+                    <input type="number" name="BloodPressure" required class="w-full p-2 border rounded bg-gray-700 text-white">
+                </div>
+                <div>
+                    <label class="block font-bold mb-1">Skin Thickness:</label>
+                    <input type="number" name="SkinThickness" required class="w-full p-2 border rounded bg-gray-700 text-white">
+                </div>
+                <div>
+                    <label class="block font-bold mb-1">Insulin:</label>
+                    <input type="number" name="Insulin" required class="w-full p-2 border rounded bg-gray-700 text-white">
+                </div>
+                <div>
+                    <label class="block font-bold mb-1">BMI:</label>
+                    <input type="number" step="0.1" name="BMI" required class="w-full p-2 border rounded bg-gray-700 text-white">
+                </div>
+                <div>
+                    <label class="block font-bold mb-1">Diabetes Pedigree Function:</label>
+                    <input type="number" step="0.01" name="DiabetesPedigreeFunction" required class="w-full p-2 border rounded bg-gray-700 text-white">
+                </div>
+                <div>
+                    <label class="block font-bold mb-1">Age:</label>
+                    <input type="number" name="Age" required class="w-full p-2 border rounded bg-gray-700 text-white">
+                </div>
+            </div>
+            <div class="mt-4">
+                <label class="block font-bold mb-1">Select Model:</label>
+                <select name="model" class="w-full p-2 border rounded bg-gray-700 text-white">
+                    <option value="Support Vector Machine">Support Vector Machine</option>
+                    <option value="Logistic Regression">Logistic Regression</option>
+                    <option value="Decision Tree">Decision Tree</option>
+                    <option value="Gradient Boosting">Gradient Boosting</option>
+                    <option value="Random Forest">Random Forest</option>
+                </select>
+            </div>
+            <div class="mt-4">
+                <button type="submit" class="w-full p-2 bg-blue-500 text-white font-bold rounded">Predict</button>
+            </div>
+        </form>
+        
+        {% if result %}
+            <div class="mt-4 p-4 bg-gray-900 border-t-4 border-blue-500 rounded">
+                <h2 class="text-2xl font-bold mb-2">Prediction Result:</h2>
+                <p class="text-xl">{{ result }}</p>
+                <h3 class="text-xl font-bold mt-4">Model: {{ selected_model }}</h3>
+                <p class="text-lg">Accuracy: {{ model_metrics[selected_model]['accuracy_test'] }}</p>
+                <p class="text-lg">Recall: {{ model_metrics[selected_model]['recall_test'] }}</p>
+                <p class="text-lg">Precision: {{ model_metrics[selected_model]['precision_test'] }}</p>
+                <p class="text-lg">F1 Score: {{ model_metrics[selected_model]['f1_test'] }}</p>
+            </div>
+        {% endif %}
+    </div>
+
+    <footer class="bg-gray-800 text-white mt-8 p-4 text-center">
+        <p>Diabetes predictions made by Eftekher Ali Efte</p>
+        <p>
+            <a href="https://www.linkedin.com/in/eftekher-ali-efte-589a82299/" class="text-blue-500">LinkedIn</a> | 
+            <a href="https://github.com/EFTEKHER" class="text-blue-500">GitHub</a>
+        </p>
+    </footer>
+</body>
+</html>
